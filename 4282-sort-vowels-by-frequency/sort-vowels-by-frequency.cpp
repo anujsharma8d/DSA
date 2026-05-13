@@ -11,22 +11,29 @@ public:
         sort(vow.begin(),vow.end());
         int n1=vow.size();
         map<char,int> mp;
-        for(int i=0;i<n1;i++){
-            mp[vow[i]]++;
+        map<char, int> firstPos;
+        for (int i = 0; i < n; i++) {
+            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u') {
+                mp[s[i]]++;
+
+                if (firstPos.find(s[i]) == firstPos.end()) {
+                    firstPos[s[i]] = i;
+                }
+            }
         }
+
         int m1=mp.size();
         int count=0;
         vector<pair<int,char>> v;
         for(auto i:mp){
             v.push_back({i.second,i.first});
         }
-        sort(v.begin(), v.end(), [&](pair<int,char> a, pair<int,char> b){
-            if(a.first != b.first) {
+        sort(v.begin(), v.end(),[&](pair<int, char> a, pair<int, char> b) {
+            if (a.first != b.first) {
                 return a.first > b.first;
             }
-            return s.find(a.second) < s.find(b.second);
+            return firstPos[a.second] < firstPos[b.second];
         });
-
         int idx=0;
         for(auto x : v){
             for(int i = 0; i < x.first; i++){
