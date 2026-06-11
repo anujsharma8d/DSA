@@ -9,31 +9,20 @@
  */
 class Solution {
 public:
-    bool lca(TreeNode* root,vector<TreeNode*>& arr, TreeNode* x){
-        if(root==NULL){
-            return false;
-        }
-        arr.push_back(root);
-        if(root==x){
-            return true;
-        }
-        if (lca(root->left,arr,x) || lca(root->right,arr,x)) return true;
-        arr.pop_back();
-        return false;
-    }
-
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        vector<TreeNode*> first;
-        vector<TreeNode*> second;
-        lca(root,first,p);
-        lca(root,second,q);
-        TreeNode* ans;
-        for(int i=0;i<min(first.size(), second.size());i++){
-            if(first[i] == second[i])
-        ans = first[i];
-    else
-        break;
+        if(root==NULL || root==p || root==q){
+            return root;
         }
-        return ans;
+        TreeNode* left = lowestCommonAncestor(root->left,p,q);
+        TreeNode* right = lowestCommonAncestor(root->right,p,q);
+        if(left==NULL){
+            return right;
+        }
+        if(right==NULL){
+            return left;
+        }
+        else{
+            return root;
+        }
     }
 };
