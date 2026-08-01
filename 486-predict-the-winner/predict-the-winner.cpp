@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int fun(int i,int j,vector<int>& nums,vector<vector<int>> &dp){
+        if(i==j){
+            return nums[i];
+        }
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        int takeleft = nums[i]-fun(i+1,j,nums,dp);
+        int takeright = nums[j]-fun(i,j-1,nums,dp);
+        return dp[i][j]=max(takeleft,takeright);
+    }
+
+    bool predictTheWinner(vector<int>& nums) {
+        int n=nums.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        return fun(0,n-1,nums,dp)>=0;
+    }
+};
