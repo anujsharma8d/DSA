@@ -3,16 +3,14 @@ public:
     vector<int> findMissingElements(vector<int>& nums) {
         int n=nums.size();
         sort(nums.begin(),nums.end());
-        int maxi=nums[n-1];
-        int mini=nums[0];
+        int count=0;
         vector<int> ans;
-        int n1=0;
-        for(int i=mini;i<=maxi;i++){
-            if(nums[n1]!=i){
-                ans.push_back(i);
-            }
-            else{
-                n1++;
+        int idx=0;
+        for(int i=0;i<n-1;i++){
+            if(nums[i+1]-nums[i]!=1){
+                for(int j=nums[i]+1;j<nums[i+1];j++){
+                    ans.push_back(j);
+                }        
             }
         }
         return ans;
