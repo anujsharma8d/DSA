@@ -15,8 +15,8 @@ public:
         if(root==NULL){
             return 0;
         }
-        int lh = maxDepth(root->left);
-        int rh = maxDepth(root->right);
-        return 1 + max(lh,rh);
+        int left = 1+maxDepth(root->left);
+        int right = 1+maxDepth(root->right);
+        return max(left,right);
     }
 };
