@@ -15,11 +15,16 @@ public:
         if(root==NULL){
             return 0;
         }
-        int lh=height(root->left,diameter);
-        int rh=height(root->right,diameter);
-        diameter=max(diameter,lh+rh);
-        return 1+max(lh,rh);
+        int leftH = height(root->left,diameter);
+        
+        int rightH = height(root->right,diameter);
+
+        diameter = max(diameter,leftH+rightH);
+
+        return 1+max(leftH,rightH);
+
     }
+
     int diameterOfBinaryTree(TreeNode* root) {
         int diameter=0;
         height(root,diameter);
