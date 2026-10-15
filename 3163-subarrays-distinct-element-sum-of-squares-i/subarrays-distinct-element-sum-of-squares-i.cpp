@@ -4,11 +4,9 @@ public:
         int ans = 0;
         int n = nums.size();
         for(int i=0;i<n;i++){
+            set<int> s;
             for(int j=i;j<n;j++){
-                set<int> s;
-                for(int k=i;k<=j;k++){
-                    s.insert(nums[k]);
-                }
+                s.insert(nums[j]);
                 int size=s.size();
                 ans+=size*size;
             }
