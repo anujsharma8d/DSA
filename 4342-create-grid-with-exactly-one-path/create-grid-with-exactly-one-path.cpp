@@ -1,16 +1,19 @@
 class Solution {
 public:
     vector<string> createGrid(int m, int n) {
-        vector<string> grid(m, string(n, '#'));
-        
-        for (int j = 0; j < n; j++) {
-            grid[0][j] = '.';
+        vector<string> ans;
+        for(int i=0;i<m-1;i++){
+            string s=".";
+            for(int j=1;j<n;j++){
+                s+='#';
+            }
+            ans.push_back(s);
         }
-        
-        for (int i = 0; i < m; i++) {
-            grid[i][n - 1] = '.';
-        }
-        
-        return grid;
+        string s="";
+        for(int j=0;j<n;j++){
+                s+='.';
+            }
+        ans.push_back(s);
+        return ans;
     }
 };
